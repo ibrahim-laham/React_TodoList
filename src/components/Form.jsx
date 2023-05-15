@@ -3,11 +3,25 @@ import React, { useState } from "react";
 import UserInput from "./UserInput";
 import TodoList from "./TodoList";
 import { v4 as uuidv4 } from "uuid";
+import Button from "@mui/material/Button";
+import { purple } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function Form() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [progress, setProgress] = useState("");
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: purple[500],
+      },
+      secondary: {
+        main: purple[100],
+      },
+    },
+  });
 
   let objectId = uuidv4();
 
@@ -19,6 +33,7 @@ export default function Form() {
   };
 
   const [submit, setSubmit] = useState([]);
+  const [unique, setUnique] = useState([]);
 
   function onChangeHandlerTitle(event) {
     let newInput = event.target.value;
@@ -35,23 +50,44 @@ export default function Form() {
     setProgress(newInput);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setSubmit([...submit, { ...inputObject }]);
-  }
-
-  console.log(submit);
+  /* function filterTitle () {
+    submit.filter
+  }; */
 
   
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSubmit([...submit, { ...inputObject }]);
+  };
+
+  function handleUnique () {
+    
+      submit.map((item) => {
+        if(inputObject.title !== item.title) { return item}
+        else{item.title=""
+      return alert("title should be unique") }
+      })
+    
+  };
+  /* [...submit, { ...inputObject }] */
+  console.log(submit, "submit");
+  
   return (
-    <form target="_self" onSubmit={handleSubmit}>
+    <form target="_self" onSubmit={(e) => {
+      handleSubmit(e);
+      handleUnique();
+    }}>
       <UserInput
         onChangeHandlerTitle={onChangeHandlerTitle}
         onChangeHandlerDate={onChangeHandlerDate}
         onChangeHandlerProgress={onChangeHandlerProgress}
       />
-      <button type="submit">Submit</button>
+      <ThemeProvider theme={theme}>
+        <Button variant="contained" type="submit">
+          Submit
+        </Button>
+      </ThemeProvider>
       <TodoList submit={submit} setSubmit={setSubmit} />
     </form>
   );
