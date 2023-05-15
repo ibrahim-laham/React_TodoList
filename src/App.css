@@ -1,4 +1,41 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+
+form, .user-input label  {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+form button {
+  width: 8vw;
+  height: 8vh;
+}
+
+.todo-item {
+  display: flex;
+}
+
+.green {
+  background-color: green;
+  width: 1vw;
+}
+
+
+.blue {
+  background-color: blue;
+  width: 1vw;
+}
+
+
+.red {
+  background-color: red;
+  width: 1vw;
+}
