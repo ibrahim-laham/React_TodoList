@@ -89,9 +89,7 @@ export default function Form() {
           onChangeHandlerTitle={onChangeHandlerTitle}
           onChangeHandlerDate={onChangeHandlerDate}
           onChangeHandlerProgress={onChangeHandlerProgress}
-          title={title}
-          date={date}
-          progress={progress}
+          inputObject={inputObject}
         />
         <div className="btn" >
           <ThemeProvider theme={theme}>
