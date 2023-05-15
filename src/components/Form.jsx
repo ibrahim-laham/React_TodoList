@@ -33,7 +33,6 @@ export default function Form() {
   };
 
   const [submit, setSubmit] = useState([]);
-  const [reset, setReset] = useState(inputObject);
 
   function onChangeHandlerTitle(event) {
     let newInput = event.target.value;
@@ -56,6 +55,7 @@ export default function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (inputObject.title === "" && inputObject.date === "" && inputObject.progress === "") {alert("please fill out all the input fields")}
     setSubmit([...submit, { ...inputObject }]);
   }
 
@@ -71,6 +71,7 @@ export default function Form() {
   }
   /* [...submit, { ...inputObject }] */
   console.log(submit, "submit");
+
 
   return (
     <form
@@ -92,11 +93,13 @@ export default function Form() {
           date={date}
           progress={progress}
         />
-        <ThemeProvider theme={theme}>
-          <Button size="large" variant="contained" type="submit">
-            Submit
-          </Button>
-        </ThemeProvider>
+        <div className="btn" >
+          <ThemeProvider theme={theme}>
+            <Button size="large" variant="contained" type="submit">
+              Submit
+            </Button>
+          </ThemeProvider>
+        </div>
       </div>
       <TodoList submit={submit} setSubmit={setSubmit} />
     </form>

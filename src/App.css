@@ -10,9 +10,10 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
-.user-input label  {
+.user-input label {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,12 +24,21 @@ form {
   width: 100%;
 }
 
-.submit-form{
+.submit-form {
   display: flex;
   flex-direction: column;
   width: 10vw;
 }
 
+.btn {
+  width: 10vw;
+  padding-left: 3px;
+  margin: 1vh 0 0 0;
+}
+
+.btn Button {
+  width: 100%;
+}
 
 .todo-item {
   display: flex;
@@ -47,12 +57,10 @@ form {
   width: 1vw;
 }
 
-
 .blue {
   background-color: blue;
   width: 1vw;
 }
-
 
 .red {
   background-color: red;
