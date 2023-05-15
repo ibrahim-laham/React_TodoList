@@ -6,21 +6,40 @@
   align-items: center;
 }
 
-
-form, .user-input label  {
+form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 }
 
-form button {
-  width: 8vw;
-  height: 8vh;
+.user-input label  {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 10vw;
 }
+
+.user-input input {
+  width: 100%;
+}
+
+.submit-form{
+  display: flex;
+  flex-direction: column;
+  width: 10vw;
+}
+
 
 .todo-item {
   display: flex;
+  justify-content: space-between;
+  height: 5vh;
+  width: 40vw;
+}
+
+.progress-color {
+  height: 5vh;
+  width: 2vw;
 }
 
 .green {

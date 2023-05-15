@@ -25,7 +25,7 @@ export default function Form() {
 
   let objectId = uuidv4();
 
-  let inputObject = {
+  const inputObject = {
     id: objectId,
     title: title,
     date: date,
@@ -33,7 +33,7 @@ export default function Form() {
   };
 
   const [submit, setSubmit] = useState([]);
-  const [unique, setUnique] = useState([]);
+  const [reset, setReset] = useState(inputObject);
 
   function onChangeHandlerTitle(event) {
     let newInput = event.target.value;
@@ -54,40 +54,50 @@ export default function Form() {
     submit.filter
   }; */
 
-  
-
   function handleSubmit(e) {
     e.preventDefault();
     setSubmit([...submit, { ...inputObject }]);
-  };
+  }
 
-  function handleUnique () {
-    
-      submit.map((item) => {
-        if(inputObject.title !== item.title) { return item}
-        else{item.title=""
-      return alert("title should be unique") }
-      })
-    
-  };
+  function handleUnique() {
+    submit.map((item) => {
+      if (inputObject.title !== item.title) {
+        return item;
+      } else {
+        item.title = "";
+        return alert("title should be unique");
+      }
+    });
+  }
   /* [...submit, { ...inputObject }] */
   console.log(submit, "submit");
-  
+
   return (
-    <form target="_self" onSubmit={(e) => {
-      handleSubmit(e);
-      handleUnique();
-    }}>
-      <UserInput
-        onChangeHandlerTitle={onChangeHandlerTitle}
-        onChangeHandlerDate={onChangeHandlerDate}
-        onChangeHandlerProgress={onChangeHandlerProgress}
-      />
-      <ThemeProvider theme={theme}>
-        <Button variant="contained" type="submit">
-          Submit
-        </Button>
-      </ThemeProvider>
+    <form
+      target="_self"
+      onSubmit={(e) => {
+        handleSubmit(e);
+        handleUnique();
+        setTitle("");
+        setDate("");
+        setProgress("");
+      }}
+    >
+      <div className="submit-form">
+        <UserInput
+          onChangeHandlerTitle={onChangeHandlerTitle}
+          onChangeHandlerDate={onChangeHandlerDate}
+          onChangeHandlerProgress={onChangeHandlerProgress}
+          title={title}
+          date={date}
+          progress={progress}
+        />
+        <ThemeProvider theme={theme}>
+          <Button size="large" variant="contained" type="submit">
+            Submit
+          </Button>
+        </ThemeProvider>
+      </div>
       <TodoList submit={submit} setSubmit={setSubmit} />
     </form>
   );
