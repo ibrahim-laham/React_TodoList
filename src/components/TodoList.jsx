@@ -1,14 +1,21 @@
 import React from "react";
 
 import TodoItem from "./TodoItem";
-import { v4 as uuidv4 } from 'uuid';
 
-export default function TodoList({submit}) {
+
+export default function TodoList({ submit, setSubmit }) {
+  
+ 
+
+  function onDeleteHandler (todoId) {
+    setSubmit(submit.filter((todo) => todo.id != todoId));
+  };
+  
   return (
     <div>
-     {
-      submit.map((todo) => <TodoItem todo={todo} key={uuidv4()} />)
-     }
+      {submit.map((todo) => (
+        <TodoItem todo={todo} key={todo.id} onDeleteHandler={onDeleteHandler} />
+      ))}
     </div>
   );
 }

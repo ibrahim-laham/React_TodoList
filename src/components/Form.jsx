@@ -2,13 +2,17 @@ import React, { useState } from "react";
 
 import UserInput from "./UserInput";
 import TodoList from "./TodoList";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Form() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [progress, setProgress] = useState("");
 
+  let objectId = uuidv4();
+
   let inputObject = {
+    id: objectId,
     title: title,
     date: date,
     progress: progress,
@@ -36,8 +40,9 @@ export default function Form() {
     setSubmit([...submit, { ...inputObject }]);
   }
 
-
   console.log(submit);
+
+  
 
   return (
     <form target="_self" onSubmit={handleSubmit}>
@@ -47,7 +52,7 @@ export default function Form() {
         onChangeHandlerProgress={onChangeHandlerProgress}
       />
       <button type="submit">Submit</button>
-      <TodoList submit={submit} />
+      <TodoList submit={submit} setSubmit={setSubmit} />
     </form>
   );
 }
