@@ -10,7 +10,7 @@ export default function UserInput({onChangeHandlerTitle, onChangeHandlerDate, on
         </label>
         <label>
           Date:
-          <input type="date" name="Date" onChange={onChangeHandlerDate} value={inputObject.date} />
+          <input type="date" name="date" onChange={onChangeHandlerDate} value={inputObject.date} />
         </label>
         <label>
           Progress:

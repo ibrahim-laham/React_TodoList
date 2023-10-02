@@ -52,17 +52,21 @@ form {
   width: 2vw;
 }
 
-.green {
+.done {
   background-color: green;
-  width: 1vw;
+  height: 5vh;
+  width: 2vw;
+
 }
 
-.blue {
+.in-progress {
   background-color: blue;
-  width: 1vw;
+  height: 5vh;
+  width: 2vw;
 }
 
-.red {
+.not-started {
   background-color: red;
-  width: 1vw;
+  height: 5vh;
+  width: 2vw;
 }

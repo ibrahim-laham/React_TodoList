@@ -8,9 +8,9 @@ import { purple } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function Form() {
-  const [title, setTitle] = useState("");
+  /* const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [progress, setProgress] = useState("");
+  const [progress, setProgress] = useState(""); */
 
   const theme = createTheme({
     palette: {
@@ -22,31 +22,35 @@ export default function Form() {
       },
     },
   });
-
+  
   let objectId = uuidv4();
-
-  const inputObject = {
+  const [inputObject, setInputObject] = useState({
+    title: "",
+    date: "",
+    progress: "",
+  })
+  /* const inputObject = {
     id: objectId,
     title: title,
     date: date,
     progress: progress,
-  };
+  }; */
 
   const [submit, setSubmit] = useState([]);
 
   function onChangeHandlerTitle(event) {
     let newInput = event.target.value;
-    setTitle(newInput);
+    setInputObject({...inputObject ,title: newInput});
   }
 
   function onChangeHandlerDate(event) {
     let newInput = event.target.value;
-    setDate(newInput);
+    setInputObject({...inputObject ,date: newInput});
   }
 
   function onChangeHandlerProgress(event) {
     let newInput = event.target.value;
-    setProgress(newInput);
+    setInputObject({...inputObject ,progress: newInput});
   }
 
   /* function filterTitle () {
@@ -55,8 +59,8 @@ export default function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (inputObject.title === "" && inputObject.date === "" && inputObject.progress === "") {alert("please fill out all the input fields")}
-    setSubmit([...submit, { ...inputObject }]);
+    if (inputObject.title === "" || inputObject.date === "" || inputObject.progress === "") {alert("please fill out all the input fields")}
+    setSubmit([...submit, {...inputObject, id: objectId }]);
   }
 
   function handleUnique() {
@@ -64,7 +68,7 @@ export default function Form() {
       if (inputObject.title !== item.title) {
         return item;
       } else {
-        item.title = "";
+        item.progress = item.date = item.title = "";
         return alert("title should be unique");
       }
     });
@@ -79,9 +83,9 @@ export default function Form() {
       onSubmit={(e) => {
         handleSubmit(e);
         handleUnique();
-        setTitle("");
-        setDate("");
-        setProgress("");
+        setInputObject({...inputObject ,title: ""});
+        setInputObject({...inputObject ,date: ""});
+        setInputObject({...inputObject ,progress: ""});
       }}
     >
       <div className="submit-form">

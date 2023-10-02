@@ -7,6 +7,7 @@ export default function TodoList({ submit, setSubmit }) {
   
 
   function onDeleteHandler (todoId) {
+    console.log(todoId);
     setSubmit(submit.filter((todo) => todo.id !== todoId));
   };
   
